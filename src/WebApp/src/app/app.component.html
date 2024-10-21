@@ -1,0 +1,17 @@
+<div class="content">
+  <header>
+    @if (isAuthenticated$ | async) {
+    <p-menubar [model]="authMenuItems"></p-menubar>
+    } @else {
+    <p-menubar [model]="unauthMenuItems"></p-menubar>
+    }
+  </header>
+
+  <main class="main" role="main">
+    <router-outlet />
+  </main>
+
+  <footer role="contentinfo">
+    &copy; 2024 <span style="color: red;">CGI</span>
+  </footer>
+</div>

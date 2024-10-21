@@ -1,0 +1,41 @@
+
+<div class="p-grid p-justify-center">
+    <div class="p-col-12">
+        <h2>Family List</h2>
+    </div>
+    @if (families.length === 0) {
+        <div class="p-col-12">
+            <p>No families found</p>
+        </div>
+     } @else {
+<p-table [value]="families" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Family Id</th>
+            <th>Family Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip Code</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-family>
+        <tr>
+            <td> <a [routerLink]="['/familyDetails', family.familyId]">{{ family.familyId }}</a></td>
+            <td>{{ family.familyName }}</td>
+            <td>{{ family.address }}</td>
+            <td>{{ family.city }}</td>
+            <td>{{ family.state }}</td>
+            <td>{{ family.zip }}</td>
+        </tr>
+    </ng-template>
+</p-table>
+     }
+</div>
+<div class="addbutton">
+    <p-button  [routerLink]="'/editFamily'">
+        Add Family
+    </p-button>
+
+
+</div>

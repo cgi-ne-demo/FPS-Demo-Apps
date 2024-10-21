@@ -1,0 +1,23 @@
+
+
+<p-card header="Welcome!">
+  <p>This sample site showcases a Single Page Application (SPA) Web Application built on the latest Angular framework. It is deployed to Amazon Simple Storage Service (S3) and is served via Amazon CloudFront.</p>
+  <p>The application is integrated with Okta's OIDC idenity provider for authentication and authorization.</p>
+  <p>
+    The dynamic data is retrieved and updated by calling a RESTful Web Services coded in C# using .NET Core framework. The web services are containerized
+    and served via AWS Fargate clusters running on Amazon Elastic Container Service (ECS). The Web Services are also configured to require users to be authenicated
+    prior to returning the data.
+  </p>
+  <p>The data is stored in a PostgreSQL database running on Amazon Aurora.</p>
+  <p-divider />
+  @if (isAuthenticated$ | async) {
+  <p><em>You are logged in and can navigate and interact with the protected areas of this website.</em></p>
+  } @else {
+  <p>
+    You may use the following credentials to Sign In:<br />
+    &nbsp; - Username: <b>user&#64;example.com</b><br />
+    &nbsp; - Password: <b>sample#123</b>
+  </p>
+  <p><em>Once you Sign In, you will be able to navigate to and interact with the protected areas of this website.</em></p>
+  }
+</p-card>

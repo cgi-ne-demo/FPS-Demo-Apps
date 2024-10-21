@@ -1,0 +1,150 @@
+:host {
+    --bright-blue: oklch(51.01% 0.274 263.83);
+    --electric-violet: oklch(53.18% 0.28 296.97);
+    --french-violet: oklch(47.66% 0.246 305.88);
+    --vivid-pink: oklch(69.02% 0.277 332.77);
+    --hot-red: oklch(61.42% 0.238 15.34);
+    --orange-red: oklch(63.32% 0.24 31.68);
+
+    --gray-900: oklch(19.37% 0.006 300.98);
+    --gray-700: oklch(36.98% 0.014 302.71);
+    --gray-400: oklch(70.9% 0.015 304.04);
+
+    --red-to-pink-to-purple-vertical-gradient: linear-gradient(180deg,
+            var(--orange-red) 0%,
+            var(--vivid-pink) 50%,
+            var(--electric-violet) 100%);
+
+    --red-to-pink-to-purple-horizontal-gradient: linear-gradient(90deg,
+            var(--orange-red) 0%,
+            var(--vivid-pink) 50%,
+            var(--electric-violet) 100%);
+
+    --pill-accent: var(--bright-blue);
+}
+
+body {
+    font-family: sans-serif;
+    line-height: 1.5;
+    color: var(--gray-400);
+    background-color: #fff;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+    margin: 2em 1em;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: bold;
+}
+
+a {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+/* Accessibility considerations */
+* {
+    box-sizing: border-box;
+    /* Include padding and border in element's total width and height */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    /* Maintain aspect ratio */
+    display: block;
+    /* Prevents image from overflowing container */
+}
+
+/* Ensure sufficient contrast */
+body {
+    color: #212529;
+    /* Dark gray text on white background */
+}
+
+a:hover {
+    color: #0056b3;
+    /* Darker blue on hover */
+}
+
+/* Responsive layout */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+}
+
+/* Keyboard navigation */
+a:focus {
+    outline: 2px solid #007bff;
+    /* Visible focus state */
+}
+
+/* ARIA attributes for screen readers */
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav li a {
+    display: block;
+    padding: 10px;
+}
+
+/* Form accessibility */
+label {
+    display: block;
+    /* Place labels above inputs */
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ced4da;
+}
+
+/* Error handling */
+.error {
+    color: --hot-red;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    margin: .2em;
+}
+
+.routes,
+.routes>a+a {
+    margin-left: 1rem;
+}
+
+.auth {
+    border: 1px solid #999;
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin: 0 1rem;
+
+    &:hover {
+        background-color: #2d8c9e;
+        color: #fff;
+    }
+}

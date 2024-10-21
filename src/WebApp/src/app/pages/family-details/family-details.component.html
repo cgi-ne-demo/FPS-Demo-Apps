@@ -1,0 +1,106 @@
+<p-card header="Family Details">
+    <table>
+        <tr>
+            <td><label>Family Name: </label></td>
+            <td>{{family?.familyName}}</td>
+        </tr>
+        <tr>
+            <td><label>Address: </label></td>
+            <td>{{family?.address}}</td>
+        </tr>
+        <tr>
+            <td><label>City:</label></td>
+            <td>{{family?.city}}</td>
+        </tr>
+        <tr>
+            <td><label>State:</label></td>
+            <td>{{family?.state}}</td>
+        </tr>
+        <tr>
+            <td><label>Zip:</label></td>
+            <td>{{family?.zip}}</td>
+        </tr>
+        <tr>
+            <td><label>Telephone:</label></td>
+            <td>{{family?.telephone}}</td>
+        </tr>
+    </table>
+    <div class="form-buttons">
+        <p-button [routerLink]="['/editFamily',family?.familyId]" [queryParams]='{source:"details"}'>
+            Edit Family
+        </p-button>
+        <p-button [routerLink]="['/familylist']">
+            Back to Family List
+        </p-button>
+    </div>
+    <p-divider></p-divider>
+    <div class="p-grid p-justify-center">
+        <div class="p-col-12">
+            <h2>Parents</h2>
+        </div>
+        @if (parents?.length === 0) {
+        <div class="p-col-12">
+            <p>No Parents found</p>
+        </div>
+        } @else {
+        <p-table [value]="parents!" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Parent Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Date Of Birth</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-parent>
+                <tr>
+                    <td> <a [routerLink]="['/editParent', parent.parentId]">{{ parent.parentId }}</a></td>
+                    <td>{{ parent.firstName }}</td>
+                    <td>{{ parent.lastName }}</td>
+                    <td>{{ parent.dob }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        }
+    </div>
+    <div class="form-buttons">
+        <p-button [routerLink]="'/editParent'" [queryParams]="{familyId:activatedRoute.snapshot.params['id']}">
+            Add Parent
+        </p-button>
+    </div>
+    <p-divider></p-divider>
+    <div class="p-grid p-justify-center">
+        <div class="p-col-12">
+            <h2>Children</h2>
+        </div>
+        @if (children?.length === 0) {
+        <div class="p-col-12">
+            <p>No Children found</p>
+        </div>
+        } @else {
+        <p-table [value]="children!" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Child Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Date Of Birth</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-child>
+                <tr>
+                    <td> <a [routerLink]="['/editChild', child.childId]">{{ child.childId }}</a></td>
+                    <td>{{ child.firstName }}</td>
+                    <td>{{ child.lastName }}</td>
+                    <td>{{ child.dob }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+        }
+    </div>
+    <div class="form-buttons">
+        <p-button [routerLink]="'/editChild'" [queryParams]="{familyId:activatedRoute.snapshot.params['id']}">
+            Add Child
+        </p-button>
+    </div>
+</p-card>

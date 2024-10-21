@@ -1,0 +1,53 @@
+<p-card header="{{title}}">
+    <form [formGroup]="familyForm" (submit)="saveFamily()">
+        <table>
+            <tr>
+                <td><label for="familyName">Family Name: </label></td>
+                <td><div class="inputField"><input pInputText id="familyName" type="text" formControlName="familyName"/> <strong class="p-error" *ngIf="familyForm.get('familyName')?.invalid && familyForm.get('familyName')?.touched">
+                   Family Name is required.
+                </strong></div></td>
+            </tr>
+            <tr>
+                <td><label for="address">Address: </label></td>
+                <td><div class="inputField"><input pInputText id="address" type="text" formControlName="address" /><strong class="p-error" *ngIf="familyForm.get('address')?.invalid && familyForm.get('address')?.touched">
+                    Address is required.
+                 </strong></div></td>
+            </tr>
+            <tr>
+                <td><label for="city">City:</label></td>
+                <td><div class="inputField"><input pInputText id="city" type="text" formControlName="city" /><strong class="p-error" *ngIf="familyForm.get('city')?.invalid && familyForm.get('city')?.touched">
+                    City is required.
+                 </strong></div></td>
+            </tr>
+            <tr>
+                <td><label for="state">State:</label></td>
+                <td><div class="inputField"><input pInputText id="state" type="text" formControlName="state" maxlength="2" /><strong class="p-error" *ngIf="familyForm.get('state')?.invalid && familyForm.get('state')?.touched">
+                    State is required.
+                 </strong></div></td>
+            </tr>
+            <tr>
+                
+                <td><label for="zip">Zip:</label></td>
+                <td><div class="inputField"><p-inputMask mask="99999" formControlName="zip" placeholder=""></p-inputMask><strong class="p-error" *ngIf="familyForm.get('zip')?.invalid && familyForm.get('zip')?.touched">
+                    Zip Code is required.
+                 </strong></div></td>
+            </tr>
+            <tr>
+                <td><label for="telephone">Telephone:</label></td>
+                <td><div class="inputField"><p-inputMask mask="(999) 999-9999" formControlName="telephone" placeholder=""/><strong class="p-error" *ngIf="familyForm.get('telephone')?.invalid && familyForm.get('telephone')?.touched">
+                    Telephone is required.
+                 </strong></div></td>
+            </tr>
+        </table>
+        <div class="form-buttons">
+            <p-button type="submit" class="primary" [disabled]="!familyForm.valid">Save</p-button>
+
+            @if (family) {
+                <p-button  class="primary" (click)="deleteFamily()">Delete</p-button>
+            }
+
+            <p-button  class="primary" (click)="cancel()">Cancel</p-button>
+        </div>
+        
+    </form>
+</p-card>
