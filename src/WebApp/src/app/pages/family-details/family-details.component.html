@@ -1,3 +1,8 @@
+@if (isLoading) {
+    <div class="loadingDiv">
+        <p-progressSpinner ariaLabel="loading" />
+    </div>
+    } @else {
 <p-card header="Family Details">
     <table>
         <tr>
@@ -104,3 +109,4 @@
         </p-button>
     </div>
 </p-card>
+    }

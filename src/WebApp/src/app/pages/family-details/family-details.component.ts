@@ -13,12 +13,14 @@ import { Parent } from '../../models/parent';
 import { Child } from '../../models/child';
 import { ChildService } from '../../services/child.service';
 import { ParentService } from '../../services/parent.service';
+import { combineLatestWith } from 'rxjs';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 
 @Component({
   selector: 'app-family-details',
   standalone: true,
-  imports: [CardModule,ButtonModule,RouterModule,TableModule,DividerModule],
+  imports: [CardModule,ButtonModule,RouterModule,TableModule,DividerModule,ProgressSpinnerModule],
   templateUrl: './family-details.component.html',
   styleUrl: './family-details.component.scss'
 })
@@ -32,20 +34,24 @@ export class FamilyDetailsComponent {
   family?: Family;
   parents? : Parent[];
   children? : Child[];
+  isLoading: boolean = true;
 
   ngOnInit() {
     
-      this.familyService.getFamilyById(this.activatedRoute.snapshot.params['id']).subscribe(family => {
+      const family$ = this.familyService.getFamilyById(this.activatedRoute.snapshot.params['id']);
+
+      const parents$ = this.parentService.getAllParentsForFamily(this.activatedRoute.snapshot.params['id']);
+
+      const children$ = this.childService.getAllChildrenForFamily(this.activatedRoute.snapshot.params['id']);
+
+      family$.pipe(combineLatestWith(parents$, children$)).subscribe(([family, parents, children]) => {
         this.family = family;
-      });
-
-      this.parentService.getAllParentsForFamily(this.activatedRoute.snapshot.params['id']).subscribe(parents => {
         this.parents = parents;
-      });
-
-      this.childService.getAllChildrenForFamily(this.activatedRoute.snapshot.params['id']).subscribe(children => {
         this.children = children;
-      });
+        this.isLoading = false;
+      },);
+
+  
   }
 
 
